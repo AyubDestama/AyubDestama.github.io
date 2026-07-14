@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayub — Software Engineering & Design</title>
+    <link rel="stylesheet" href="style.css">
+    <!--Menggunakan font bergaya monospace-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-inside">
+            <a href="#" class="brand">Ayub Destama Putra</a>
+            <nav class="links">
+                <a href="https://www.instagram.com/destama.a/">// Instagram</a>
+                <a href="https://www.linkedin.com/in/ayub-destama-putra/">// LinkedIn</a>
+                <a href="#projects">// projects</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!Hero Section>
+        <section class="hero">
+            <p class="mono-tag">[halo, saya ayub]</p>
+            <h1 class="main-headline">Mahasiswa Software Engineering yang fokus pada UI/UX dan Quality Assurance.</h1>
+            <p class="sub-headline">
+                Sedang menempuh studi di Telkom University. Lebih banyak menghabiskan waktu menulis arsitektur sistem di Java/C# dan Desain Menggunakan Figma, mengulik efisiensi query database, dan menerjemahkan visual hierarchy dari Figma ke kode.
+            </p>
+            <div class="cta-group">
+                <a href="#projects" class="btn-main">Lihat Project</a>
+                <a href="#contact" class="btn-sub">Hubungi Saya</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="grid-layout">
+            <div class="sticky-title">
+                <h2>Organisasi</h2>
+            </div>
+            <div class="content-body">
+                    <div class="stack-column">
+                <h3>Warta SMAN 1 Kalianda (2022-2023)</h3>
+                <p>Disini Saya merupakan anggota tim editor dan dokumentasi untuk Warta SMAN 1 Kalianda, menghasilkan konten informatif dan menarik untuk siswa dan mengupdate seputar berita sekolah dari prestasi mahasiswa dan kegiatan di sekolah.</p>
+                
+                <h3>UKM Luminosus Animations (2025-2026)</h3>
+                <p>Saya menjabat sebagai Ketua Humas dari Luminosus Animations yag bergerak di bidang animasi 2D dan 3D, tugas saya adalah melayani komunikasi antara tim dan client, serta mengelola media sosial untuk promosi proyek.</p>
+            </div>
+        </section>
+
+        <!-- Tooling Section -->
+        <section id="stack" class="grid-layout">
+            <div class="sticky-title">
+                <h2>Keahlian</h2>
+            </div>
+            <div class="content-body">
+                <div class="stack-box">
+                    <div class="stack-column">
+                        <h3>Bahasa & Framework</h3>
+                        <ul>
+                            <li>Java / Spring Boot</li>
+                            <li>C# / ASP.NET Core</li>
+                            <li>Python</li>
+                            <li>Dart / Flutter</li>
+                        </ul>
+                    </div>
+                    <div class="stack-column">
+                        <h3>Basis Data</h3>
+                        <ul>
+                            <li>PostgreSQL & MySQL</li>
+                            <li>MongoDB (NoSQL)</li>
+                            <li>Normalisasi Data / Join</li>
+                        </ul>
+                    </div>
+                    <div class="stack-column">
+                        <h3>Desain & Lainnya</h3>
+                        <ul>
+                            <li>Figma (UI/UX)</li>
+                            <li>Aksara & Bahasa Lampung</li>
+                            <li>Git Version Control</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="grid-layout">
+            <div class="sticky-title">
+                <h2>Karya</h2>
+            </div>
+            <div class="content-body projects-list">
+                
+                <!-- Project 1 -->
+                <article class="project-item">
+                    <div class="project-header">
+                        <span class="mono-tag">Web App / POS System</span>
+                        <h3>Cafe Pak’Cek Cashier & Centralized System</h3>
+                    </div>
+                    <p class="project-detail">
+                        Sistem kasir berbasis web yang dirancang menggunakan analisis use-case mendalam dan dokumen SRS formal. Memastikan manajemen state transaksi tetap konsisten untuk operasional harian cafe.
+                    </p>
+                    <div class="project-tags">
+                        <span>C#</span> <span>ASP.NET Core</span> <span>PostgreSQL</span>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-item">
+                    <div class="project-header">
+                        <span class="mono-tag">Algorithm / Python</span>
+                        <h3>Vanilla Genetic Algorithm from Scratch</h3>
+                    </div>
+                    <p class="project-detail">
+                        Implementasi murni Algoritma Genetik tanpa *external library* untuk mencari nilai minimum fungsi matematika. Fokus pada pemahaman core logic seleksi, crossover, dan mutasi.
+                    </p>
+                    <div class="project-tags">
+                        <span>Python</span> <span>Algoritma</span> <span>Optimasi</span>
+                    </div>
+                </article>
+
+                                <!-- Project 3 -->
+                <article class="project-item">
+                    <div class="project-header">
+                        <span class="mono-tag">Desain UI/UX</span>
+                        <h3>Redesign UI/UX Aplikasi IDN LIVE</h3>
+                    </div>
+                    <p class="project-detail">
+Redesign UI/UX aplikasi IDN Live berdasarkan hasil UX Research yang mengungkap permasalahan pada alur login melalui browser, navigasi yang kurang mudah dipelajari, dan performa aplikasi yang sering mengalami lag. Solusi difokuskan pada penyederhanaan aliran pengguna, peningkatan kegunaan, serta menghadirkan pengalaman live streaming yang lebih cepat, stabil, dan nyaman bagi pengguna seluler.                    <div class="project-tags">
+                        <span>Figma</span> <span>UI</span> <span>UX</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="grid-layout">
+            <div class="sticky-title">
+                <h2>Kontak</h2>
+            </div>
+            <div class="content-body">
+                <p class="contact-text">
+                    Pintu kolaborasi selalu terbuka, baik untuk diskusi proyek, riset, atau sekadar bertukar pikiran seputar software engineering.
+                </p>
+                <a href="mailto:ayubdestama@gmail.com" class="mail-link">ayubdestama@gmail.com ↗</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Ayub. Dibuat secara manual menggunakan CSS Grid & Flexbox.</p>
+    </footer>
+
+</body>
+</html>

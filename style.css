@@ -1,0 +1,304 @@
+/* ==========================================================================
+   RESET & VARIABLES
+   ========================================================================== */
+:root {
+    --bg: #0d0f12;          /* Hitam arang matte, sangat nyaman di mata */
+    --surface: #14181f;     /* Warna card/kotak */
+    --border: #da3c3c;      /* Garis tipis pembatas */
+    --text: #e2e8f0;        /* Putih pudar profesional */
+    --muted: #8a99ad;       /* Abu-abu teks sekunder */
+    --accent: #da3c3c;      /* Biru indigo tegas untuk elemen aktif */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* NAVIGATION */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(13, 15, 18, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+}
+
+.nav-inside {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.1rem;
+}
+
+.links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.links a {
+    font-family: 'Space Mono', monospace;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+
+.links a:hover {
+    color: var(--text);
+}
+
+@media (max-width: 600px) {
+    .links { display: none; } /* Menyembunyikan link di hp agar tidak berantakan */
+}
+
+/*LAYOUT ENGINE*/
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10rem 1.5rem 6rem 1.5rem;
+}
+
+.mono-tag {
+    font-family: 'Space Mono', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+    margin-bottom: 10rem;
+    max-width: 800px;
+}
+
+.main-headline {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.sub-headline {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.cta-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-main, .btn-sub {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-main {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.btn-main:hover {
+    background: #ffffff;
+}
+
+.btn-sub {
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.btn-sub:hover {
+    background: var(--surface);
+}
+
+@media (min-width: 768px) {
+    .main-headline { font-size: 3.5rem; }
+}
+
+/* ==========================================================================
+   GRID LAYOUT (SECTIONS)
+   ========================================================================== */
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 8rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.sticky-title h2 {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+}
+
+.content-body {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.content-body p {
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .grid-layout {
+        grid-template-columns: 250px 1fr; /* Layout asimetris khas developer pro */
+    }
+    .sticky-title {
+        position: sticky;
+        top: 6rem;
+    }
+}
+
+/* ==========================================================================
+   STACK TECH BOX
+   ========================================================================== */
+.stack-box {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-top: 1rem;
+}
+
+.stack-column h3 {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.stack-column ul {
+    list-style: none;
+}
+
+.stack-column li {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.2rem;
+}
+
+.stack-column li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+@media (min-width: 500px) {
+    .stack-box { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ==========================================================================
+   PROJECTS
+   ========================================================================== */
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.project-item {
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s ease;
+}
+
+.project-item:hover {
+    border-color: var(--muted);
+}
+
+.project-header h3 {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.project-detail {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tags span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   CONTACT & FOOTER
+   ========================================================================== */
+.contact-text {
+    margin-bottom: 2rem !important;
+}
+
+.mail-link {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+    transition: color 0.2s ease;
+}
+
+.mail-link:hover {
+    color: var(--accent);
+}
+
+.footer {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border-top: 1px solid var(--border);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
