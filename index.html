@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayub — Software Engineering & Design</title>
     <link rel="stylesheet" href="style.css">
-    <!--Menggunakan font bergaya monospace-->
+    <!-- Menggunakan font bergaya monospace & sans profesional -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -25,16 +25,23 @@
 
     <main class="container">
         
-        <!Hero Section>
-        <section class="hero">
-            <p class="mono-tag">[halo, saya ayub]</p>
-            <h1 class="main-headline">Mahasiswa Software Engineering yang fokus pada UI/UX dan Quality Assurance.</h1>
-            <p class="sub-headline">
-                Sedang menempuh studi di Telkom University. Lebih banyak menghabiskan waktu menulis arsitektur sistem di Java/C# dan Desain Menggunakan Figma, mengulik efisiensi query database, dan menerjemahkan visual hierarchy dari Figma ke kode.
-            </p>
-            <div class="cta-group">
-                <a href="#projects" class="btn-main">Lihat Project</a>
-                <a href="#contact" class="btn-sub">Hubungi Saya</a>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-text">
+                <p class="mono-tag">[halo, saya ayub]</p>
+                <h1 class="main-headline">Mahasiswa Software Engineering yang fokus pada UI/UX dan Quality Assurance.</h1>
+                <p class="sub-headline">
+                    Sedang menempuh studi di Telkom University. Lebih banyak menghabiskan waktu menulis arsitektur sistem di Java/C# dan Desain Menggunakan Figma, mengulik efisiensi query database, dan menerjemahkan visual hierarchy dari Figma ke kode.
+                </p>
+                <div class="cta-group">
+                    <a href="#projects" class="btn-main">Lihat Project</a>
+                    <a href="#contact" class="btn-sub">Hubungi Saya</a>
+                </div>
+            </div>
+
+            <!-- Kontainer Foto Profil Sesuai Logika Absolute CSS Anda -->
+            <div class="hero-photo-wrapper">
+                <img src="fotoSendiri.jpg" alt="Foto Ayub Destama Putra" class="profile-photo">
             </div>
         </section>
 
@@ -44,24 +51,28 @@
                 <h2>Organisasi</h2>
             </div>
             <div class="content-body">
-                    <div class="stack-column">
-                <h3>Warta SMAN 1 Kalianda (2022-2023)</h3>
-                <p>Disini Saya merupakan anggota tim editor dan dokumentasi untuk Warta SMAN 1 Kalianda, menghasilkan konten informatif dan menarik untuk siswa dan mengupdate seputar berita sekolah dari prestasi mahasiswa dan kegiatan di sekolah.</p>
-                
-                <h3>UKM Luminosus Animations (2025-2026)</h3>
-                <p>Saya menjabat sebagai Ketua Humas dari Luminosus Animations yag bergerak di bidang animasi 2D dan 3D, tugas saya adalah melayani komunikasi antara tim dan client, serta mengelola media sosial untuk promosi proyek.</p>
+                <div class="stack-column">
+                    <h3>Warta SMAN 1 Kalianda (2022-2023)</h3>
+                    <p>Disini Saya merupakan anggota tim editor dan dokumentasi untuk Warta SMAN 1 Kalianda, menghasilkan konten informatif dan menarik untuk siswa dan mengupdate seputar berita sekolah dari prestasi mahasiswa dan kegiatan di sekolah.</p>
+                    
+                    <h3>UKM Luminosus Animations (2025-2026)</h3>
+                    <p>Saya menjabat sebagai Ketua Humas dari Luminosus Animations yag bergerak di bidang animasi 2D dan 3D, tugas saya adalah melayani komunikasi antara tim dan client, serta mengelola media sosial untuk promosi proyek.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Tooling Section -->
+        <!-- Tooling Section (3 Kartu Premium Sesuai Gambar) -->
         <section id="stack" class="grid-layout">
             <div class="sticky-title">
                 <h2>Keahlian</h2>
             </div>
-            <div class="content-body">
-                <div class="stack-box">
-                    <div class="stack-column">
-                        <h3>Bahasa & Framework</h3>
+            <div class="content-body grid-three-cards">
+                
+                <!-- Kartu 01: Bahasa & Framework -->
+                <div class="expert-card">
+                    <div class="card-top-content">
+                        <span class="card-number">01.</span>
+                        <h3 class="card-title">Bahasa & Framework</h3>
                         <ul>
                             <li>Java / Spring Boot</li>
                             <li>C# / ASP.NET Core</li>
@@ -69,23 +80,39 @@
                             <li>Dart / Flutter</li>
                         </ul>
                     </div>
-                    <div class="stack-column">
-                        <h3>Basis Data</h3>
-                        <ul>
-                            <li>PostgreSQL & MySQL</li>
-                            <li>MongoDB (NoSQL)</li>
-                            <li>Normalisasi Data / Join</li>
-                        </ul>
+                    <div class="card-image-wrapper">
                     </div>
-                    <div class="stack-column">
-                        <h3>Desain & Lainnya</h3>
+                </div>
+
+                <!-- Kartu 02: Basis Data -->
+                <div class="expert-card">
+                    <div class="card-top-content">
+                        <span class="card-number">02.</span>
+                        <h3 class="card-title">Manajemen Basis Data</h3>
                         <ul>
-                            <li>Figma (UI/UX)</li>
-                            <li>Aksara & Bahasa Lampung</li>
-                            <li>Git Version Control</li>
+                            <li><a href="https://www.ibm.com/id-id/think/topics/postgresql-vs-mysql">PostgreSQL vs MySQL ↗</a></li>
+                            <li><a href="https://www.mongodb.com/resources/basics/databases/nosql-explained">MongoDB (NoSQL) ↗</a></li>
+                            <li><a href="https://www.ibm.com/id-id/think/topics/normalization-data">Normalisasi Data / Join ↗</a></li>
                         </ul>
                     </div>
                 </div>
+
+                <!-- Kartu 03: Desain & Lainnya -->
+                <div class="expert-card">
+                    <div class="card-top-content">
+                        <span class="card-number">03.</span>
+                        <h3 class="card-title">Desain & Kebudayaan</h3>
+                        <ul>
+                            <li><a href="https://www.figma.com/">Figma (UI/UX) ↗</a></li>
+                            <li><a href="https://www.bahasa-lampung.go.id/">Aksara & Bahasa Lampung ↗</a></li>
+                            <li><a href="https://git-scm.com/">Git Version Control ↗</a></li>
+                            <li><a href="https://www.geeksforgeeks.org/computer-science-fundamentals/what-is-photoshop/">Photoshop ↗</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-image-wrapper">
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -124,14 +151,16 @@
                     </div>
                 </article>
                 
-                                <!-- Project 3 -->
+                <!-- Project 3 -->
                 <article class="project-item">
                     <div class="project-header">
                         <span class="mono-tag">Desain UI/UX</span>
                         <h3>Redesign UI/UX Aplikasi IDN LIVE</h3>
                     </div>
                     <p class="project-detail">
-Redesign UI/UX aplikasi IDN Live berdasarkan hasil UX Research yang mengungkap permasalahan pada alur login melalui browser, navigasi yang kurang mudah dipelajari, dan performa aplikasi yang sering mengalami lag. Solusi difokuskan pada penyederhanaan aliran pengguna, peningkatan kegunaan, serta menghadirkan pengalaman live streaming yang lebih cepat, stabil, dan nyaman bagi pengguna seluler.                    <div class="project-tags">
+                        Redesign UI/UX aplikasi IDN Live berdasarkan hasil UX Research yang mengungkap permasalahan pada alur login melalui browser, navigasi yang kurang mudah dipelajari, dan performa aplikasi yang sering mengalami lag. Solusi difokuskan pada penyederhanaan aliran pengguna, peningkatan kegunaan, serta menghadirkan pengalaman live streaming yang lebih cepat, stabil, dan nyaman bagi pengguna seluler.
+                    </p>
+                    <div class="project-tags">
                         <span>Figma</span> <span>UI</span> <span>UX</span>
                     </div>
                 </article>
@@ -147,7 +176,11 @@ Redesign UI/UX aplikasi IDN Live berdasarkan hasil UX Research yang mengungkap p
                 <p class="contact-text">
                     Pintu kolaborasi selalu terbuka, baik untuk diskusi proyek, riset, atau sekadar bertukar pikiran seputar software engineering.
                 </p>
-                <a href="mailto:ayubdestama@gmail.com" class="mail-link">ayubdestama@gmail.com ↗</a>
+                <ul>
+                    <li><a href="mailto:ayubdestama@gmail.com">Email ↗</a></li>
+                    <li><a href="https://www.instagram.com/destama.a/">Instagram ↗</a></li>
+                    <li><a href="https://www.linkedin.com/in/ayub-destama-putra/">LinkedIn ↗</a></li>
+                </ul>
             </div>
         </section>
 

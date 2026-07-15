@@ -1,13 +1,14 @@
 /* ==========================================================================
-   RESET & VARIABLES
+   1. VARIABLES & GLOBAL RESET
    ========================================================================== */
 :root {
-    --bg: #0d0f12;          /* Hitam arang matte, sangat nyaman di mata */
-    --surface: #14181f;     /* Warna card/kotak */
-    --border: #da3c3c;      /* Garis tipis pembatas */
-    --text: #e2e8f0;        /* Putih pudar profesional */
-    --muted: #8a99ad;       /* Abu-abu teks sekunder */
-    --accent: #da3c3c;      /* Biru indigo tegas untuk elemen aktif */
+    --bg: #0d0f12;          /* Hitam arang matte modern */
+    --surface: #14181f;     /* Warna latar dalam kartu & navbar */
+    --border: #242b35;      /* Garis batas tipis */
+    --text: #e2e8f0;        /* Warna teks utama (putih pudar) */
+    --muted: #8a99ad;       /* Warna teks sekunder/deskripsi */
+    --accent: #e11d48;      /* Merah untuk elemen interaktif */
+    --red-number: #e11d48;  /* Merah aksen untuk nomor /01. */
 }
 
 * {
@@ -23,7 +24,30 @@ html {
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* NAVIGATION */
+body {
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
 .navbar {
     position: fixed;
     top: 0;
@@ -46,9 +70,8 @@ html {
 .brand {
     font-family: 'Space Mono', monospace;
     font-weight: 700;
-    text-decoration: none;
-    color: var(--text);
     font-size: 1.1rem;
+    letter-spacing: -0.02em;
 }
 
 .links {
@@ -58,7 +81,6 @@ html {
 
 .links a {
     font-family: 'Space Mono', monospace;
-    text-decoration: none;
     color: var(--muted);
     font-size: 0.85rem;
     transition: color 0.2s ease;
@@ -69,10 +91,12 @@ html {
 }
 
 @media (max-width: 600px) {
-    .links { display: none; } /* Menyembunyikan link di hp agar tidak berantakan */
+    .links { display: none; } 
 }
 
-/*LAYOUT ENGINE*/
+/* ==========================================================================
+   3. LAYOUT CONTAINER & UTILITIES
+   ========================================================================== */
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -88,15 +112,24 @@ html {
 }
 
 /* ==========================================================================
-   HERO
+   4. HERO SECTION (FOTO PROFIL ABSOLUTE DI KANAN)
    ========================================================================== */
-.hero {
+.hero-section {
+    position: relative; 
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
     margin-bottom: 10rem;
-    max-width: 800px;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-text {
+    width: 55%;
+    z-index: 2; 
 }
 
 .main-headline {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.03em;
@@ -105,7 +138,7 @@ html {
 }
 
 .sub-headline {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--muted);
     line-height: 1.6;
     margin-bottom: 2.5rem;
@@ -121,8 +154,7 @@ html {
     font-size: 0.9rem;
     font-weight: 600;
     border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-main {
@@ -132,6 +164,8 @@ html {
 
 .btn-main:hover {
     background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
 
 .btn-sub {
@@ -141,14 +175,69 @@ html {
 
 .btn-sub:hover {
     background: var(--surface);
+    border-color: var(--muted);
+    transform: translateY(-2px);
 }
 
-@media (min-width: 768px) {
-    .main-headline { font-size: 3.5rem; }
+.hero-photo-wrapper {
+    position: absolute;
+    right: -30px;
+    bottom: 5px;
+    width: 42%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    z-index: 1;
+}
+
+.hero-photo-wrapper img.profile-photo {
+    width: clamp(8px, 50vw, 400px);
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    filter: grayscale(20%);
+    transition: filter 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+}
+
+.hero-photo-wrapper img.profile-photo:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+    border-color: var(--accent);
+}
+
+@media (max-width: 900px) {
+    .hero-section {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        min-height: auto;
+        margin-bottom: 6rem;
+    }
+    .hero-text {
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+    .main-headline { font-size: 2.2rem; }
+    .hero-photo-wrapper {
+        position: relative; 
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        justify-content: center;
+    }
+    .hero-photo-wrapper img.profile-photo {
+        width: 100%;
+        max-width: 360px;
+    }
+}
+
+@media (min-width: 901px) {
+    .main-headline { font-size: 3.2rem; }
 }
 
 /* ==========================================================================
-   GRID LAYOUT (SECTIONS)
+   5. GENERAL SECTION GRID LAYOUT (Asimetris 2 Kolom)
    ========================================================================== */
 .grid-layout {
     display: grid;
@@ -164,68 +253,165 @@ html {
     font-size: 0.95rem;
     color: var(--muted);
     letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .content-body {
-    font-size: 1.05rem;
     color: var(--muted);
-    line-height: 1.7;
-}
-
-.content-body p {
-    margin-bottom: 1.5rem;
 }
 
 @media (min-width: 768px) {
-    .grid-layout {
-        grid-template-columns: 250px 1fr; /* Layout asimetris khas developer pro */
+    #daftar-keahlian.grid-three-cards {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        align-items: stretch !important; /* Memaksa semua kartu memiliki tinggi yang sama tinggi */
+        gap: 24px !important;
+        width: 100% !important;
     }
-    .sticky-title {
-        position: sticky;
-        top: 6rem;
-    }
-}
 
-/* ==========================================================================
-   STACK TECH BOX
-   ========================================================================== */
-.stack-box {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding-top: 1rem;
+    #daftar-keahlian.grid-three-cards .expert-card {
+        flex: 1 !important;
+        width: calc(50% - 12px) !important; 
+        max-width: calc(50% - 12px) !important; 
+        box-sizing: border-box !important;
+        
+        min-height: 380px !important; /* Mengunci tinggi minimal kartu agar megah ke bawah */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important; /* Mendorong konten atas dan bawah saling menjauh */
+    }
 }
 
 .stack-column h3 {
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: #ffffff;
-    margin-bottom: 1rem;
-}
-
-.stack-column ul {
-    list-style: none;
-}
-
-.stack-column li {
-    font-size: 0.95rem;
     margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.2rem;
+    margin-top: 1.5rem;
 }
 
-.stack-column li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: var(--accent);
+.stack-column h3:first-child {
+    margin-top: 0;
 }
 
-@media (min-width: 500px) {
-    .stack-box { grid-template-columns: repeat(3, 1fr); }
+.stack-column p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
 
 /* ==========================================================================
-   PROJECTS
+   6. PREMIUM EXPERTISE CARDS (Bagian Keahlian - Perbaikan Sejajar Kesamping)
+   ========================================================================== */
+.grid-three-cards {
+    display: flex !important;
+    flex-direction: row !important;        /* Wajib berjejer ke samping */
+    justify-content: flex-start !important;   /* Rata kiri */
+    align-items: stretch !important;         /* Tinggi kartu sama rata */
+    flex-wrap: nowrap !important;            /* Blokir paksa agar tidak turun ke bawah */
+    gap: 1.5rem !important;
+    width: 100% !important;
+    clear: both !important;
+}
+
+/* Mengatur ukuran kartu agar membagi ruang secara adil (50% - gap) */
+.grid-three-cards .expert-card {
+    flex: 1 1 calc(50% - 0.75rem) !important; 
+    max-width: calc(50% - 0.75rem) !important;
+    box-sizing: border-box !important;
+}
+
+.expert-card {
+    background: #090a0c; 
+    border: 1px solid var(--border);
+    border-radius: 20px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden; 
+    height: 100%; 
+    isolation: isolate; 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease;
+}
+
+.expert-card:hover {
+    border-color: #3e4856;
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-top-content {
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+.card-top-content ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    flex-grow: 1; 
+}
+
+.card-top-content li {
+    font-size: 0.88rem; 
+    line-height: 1.5;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+}
+
+.card-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--red-number);
+    display: block;
+    margin-bottom: 0.4rem;
+    transition: transform 0.3s ease;
+}
+
+.expert-card:hover .card-number {
+    transform: translateX(4px);
+}
+
+.card-title {
+    font-size: 1.25rem; 
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.card-image-wrapper {
+    width: 100%;
+    height: 130px; 
+    margin-top: auto; 
+    background: transparent; 
+    overflow: hidden;
+    position: relative;
+    border-radius: 0 0 20px 20px; 
+}
+
+.card-img {
+    width: 100%;
+    height: 160%;
+    object-fit: contain; 
+    display: block;
+    border-radius: 0 0 20px 20px;
+    padding: 0.6rem; 
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    mix-blend-mode: multiply; 
+}
+
+.expert-card:hover .card-img {
+    transform: scale(1.05);
+}
+/* ==========================================================================
+   7. PROJECTS LIST (Bagian Karya)
    ========================================================================== */
 .projects-list {
     display: flex;
@@ -236,13 +422,14 @@ html {
 .project-item {
     padding: 1.5rem;
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 1px solid var(--surface);
     border-radius: 6px;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 .project-item:hover {
     border-color: var(--muted);
+    transform: scale(1.01);
 }
 
 .project-header h3 {
@@ -255,6 +442,8 @@ html {
 .project-detail {
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
+    color: var(--muted);
+    line-height: 1.6;
 }
 
 .project-tags {
@@ -271,27 +460,82 @@ html {
     border: 1px solid var(--border);
     color: var(--text);
     border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.project-item:hover .project-tags span {
+    border-color: var(--accent);
+    color: #ffffff;
 }
 
 /* ==========================================================================
-   CONTACT & FOOTER
+   8. CONTACT & FOOTER 
    ========================================================================== */
+
+.content-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;        /* Membuat tombol berjejer ke samping */
+    flex-wrap: wrap;      /* Otomatis turun ke bawah dengan rapi jika layar HP sempit */
+    gap: 1rem;            /* Memberikan space/jarak 16px antar tombol (Email, Instagram, LinkedIn) */
+    margin-top: 1.5rem;   /* Memberikan space jarak dari teks deskripsi di atasnya */
+}
+
+.contact-social-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem; /* Membuat space jarak dari teks di atasnya */
+}
+
+.contact-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                background-color 0.3s ease;
+}
+
+.contact-icon-btn i {
+    font-size: 1.05rem;
+}
+
+/* Efek Hover Interaktif */
+.contact-icon-btn:hover {
+    color: #ffffff;
+    border-color: var(--accent);
+    background: rgba(225, 29, 72, 0.05); 
+    transform: translateY(-4px); 
+}
+
 .contact-text {
-    margin-bottom: 2rem !important;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
 }
 
 .mail-link {
     font-size: 1.5rem;
     font-weight: 700;
     color: #ffffff;
-    text-decoration: none;
     border-bottom: 2px solid var(--accent);
     padding-bottom: 4px;
-    transition: color 0.2s ease;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .mail-link:hover {
     color: var(--accent);
+    padding-left: 6px; 
 }
 
 .footer {
