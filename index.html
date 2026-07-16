@@ -2,17 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-        <!-- Menghilangkan kemampuan user untuk zoom secara tidak sengaja (membuatnya kaku seperti aplikasi) -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-        <!-- Optimasi Khusus iOS (Safari / Apple) -->
-         <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="apple-mobile-web-app-title" content="Ayub Portfolio">
-
-        <!-- Warna tema bar atas Android Chrome -->
-        <meta name="theme-color" content="#0d0f12">    <title>Ayub — Software Engineering & Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayub — Software Engineering & Design</title>
     <link rel="stylesheet" href="style.css">
     <!-- Menggunakan font bergaya monospace & sans profesional -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -209,7 +200,7 @@
         <p>© 2026 Ayub. Dibuat secara manual menggunakan CSS Grid & Flexbox.</p>
     </footer>
 
-   <!-- KODE BARU: JAVASCRIPT UNTUK MEMPROSES TOGGLE LIGHT/DARK MODE DENGAN GAMBAR -->
+   <!-- JAVASCRIPT UNTUK MEMPROSES TOGGLE LIGHT/DARK MODE -->
     <script>
         const toggleButton = document.getElementById('theme-toggle');
         const currentTheme = localStorage.getItem('theme');
@@ -241,6 +232,6 @@
                 toggleButton.innerHTML = `<img src="${gambarMatahari}" alt="Mode Terang" style="width: 20px; height: 20px; object-fit: contain;">`;
             }
         });
-    </script>
+    </script>>
 </body>
 </html>
