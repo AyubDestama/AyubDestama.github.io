@@ -9,6 +9,24 @@
     --muted: #8a99ad;       /* Warna teks sekunder/deskripsi */
     --accent: #e11d48;      /* Merah untuk elemen interaktif */
     --red-number: #e11d48;  /* Merah aksen untuk nomor /01. */
+    --text-white: #ffffff;  /* Kontras tinggi untuk judul (Dark Mode) */
+    
+    /* Variabel transisi global agar pergantian tema terasa smooth */
+    --theme-transition: background 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+}
+
+/* ==========================================
+   KODE BARU: VARIABEL UNTUK LIGHT MODE
+   ========================================== */
+[data-theme="light"] {
+    --bg: #f8fafc;          /* Abu-abu sangat terang / hampir putih */
+    --surface: #ffffff;     /* Putih bersih untuk kartu & navbar */
+    --border: #e2e8f0;      /* Garis batas terang yang lembut */
+    --text: #334155;        /* Teks utama abu-abu gelap modern */
+    --muted: #64748b;       /* Teks sekunder abu-abu sedang */
+    --accent: #e11d48;      /* Tetap merah agar identitas brand menjaga */
+    --red-number: #e11d48;  /* Tetap merah */
+    --text-white: #0f172a;  /* Diubah menjadi hitam pekat saat Light Mode */
 }
 
 * {
@@ -22,11 +40,13 @@ html {
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: var(--theme-transition);
 }
 
 body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: var(--theme-transition);
 }
 
 a {
@@ -56,6 +76,12 @@ a {
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     z-index: 100;
+    transition: var(--theme-transition);
+}
+
+/* Penyesuaian background navbar saat light mode agar tidak transparan hitam */
+[data-theme="light"] .navbar {
+    background: rgba(248, 250, 252, 0.85);
 }
 
 .nav-inside {
@@ -72,11 +98,13 @@ a {
     font-weight: 700;
     font-size: 1.1rem;
     letter-spacing: -0.02em;
+    color: var(--text-white);
 }
 
 .links {
     display: flex;
     gap: 1.5rem;
+    align-items: center;
 }
 
 .links a {
@@ -133,7 +161,7 @@ a {
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.03em;
-    color: #ffffff;
+    color: var(--text-white);
     margin-bottom: 1.5rem;
 }
 
@@ -158,19 +186,20 @@ a {
 }
 
 .btn-main {
-    background: var(--text);
+    background: var(--text-white);
     color: var(--bg);
 }
 
 .btn-main:hover {
-    background: #ffffff;
+    opacity: 0.9;
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .btn-sub {
     border: 1px solid var(--border);
     color: var(--text);
+    background: transparent;
 }
 
 .btn-sub:hover {
@@ -246,6 +275,7 @@ a {
     margin-bottom: 8rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border);
+    transition: var(--theme-transition);
 }
 
 .sticky-title h2 {
@@ -261,32 +291,28 @@ a {
 }
 
 @media (min-width: 768px) {
-    #daftar-keahlian.grid-three-cards {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: flex-start !important;
-        align-items: stretch !important; /* Memaksa semua kartu memiliki tinggi yang sama tinggi */
-        gap: 24px !important;
-        width: 100% !important;
+    .grid-three-cards {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 1.25rem !important;
+        align-items: stretch !important;
     }
 
-    #daftar-keahlian.grid-three-cards .expert-card {
-        flex: 1 !important;
-        width: calc(50% - 12px) !important; 
-        max-width: calc(50% - 12px) !important; 
-        box-sizing: border-box !important;
-        
-        min-height: 380px !important; /* Mengunci tinggi minimal kartu agar megah ke bawah */
+    .grid-three-cards .expert-card {
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 280px !important;
+        height: 100% !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: space-between !important; /* Mendorong konten atas dan bawah saling menjauh */
+        justify-content: space-between !important;
+        box-sizing: border-box !important;
     }
 }
 
 .stack-column h3 {
     font-size: 1.15rem;
-    color: #ffffff;
+    color: var(--text-white);
     margin-bottom: 0.5rem;
     margin-top: 1.5rem;
 }
@@ -306,24 +332,23 @@ a {
    ========================================================================== */
 .grid-three-cards {
     display: flex !important;
-    flex-direction: row !important;        /* Wajib berjejer ke samping */
-    justify-content: flex-start !important;   /* Rata kiri */
-    align-items: stretch !important;         /* Tinggi kartu sama rata */
-    flex-wrap: nowrap !important;            /* Blokir paksa agar tidak turun ke bawah */
-    gap: 1.5rem !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
     width: 100% !important;
     clear: both !important;
 }
 
-/* Mengatur ukuran kartu agar membagi ruang secara adil (50% - gap) */
 .grid-three-cards .expert-card {
-    flex: 1 1 calc(50% - 0.75rem) !important; 
-    max-width: calc(50% - 0.75rem) !important;
+    flex: 1 1 calc((100% - 2rem) / 3) !important;
+    max-width: calc((100% - 2rem) / 3) !important;
     box-sizing: border-box !important;
 }
 
 .expert-card {
-    background: #090a0c; 
+    background: var(--surface); 
     border: 1px solid var(--border);
     border-radius: 20px; 
     display: flex;
@@ -334,17 +359,18 @@ a {
     isolation: isolate; 
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 border-color 0.4s ease, 
-                box-shadow 0.4s ease;
+                box-shadow 0.4s ease,
+                background var(--theme-transition);
 }
 
 .expert-card:hover {
     border-color: #3e4856;
     transform: translateY(-6px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .card-top-content {
-    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    padding: 1.25rem 1.25rem 0.75rem 1.25rem;
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
@@ -357,8 +383,8 @@ a {
 }
 
 .card-top-content li {
-    font-size: 0.88rem; 
-    line-height: 1.5;
+    font-size: 0.84rem; 
+    line-height: 1.45;
     color: var(--muted);
     margin-bottom: 0.3rem;
 }
@@ -381,7 +407,7 @@ a {
     font-size: 1.25rem; 
     font-weight: 700;
     line-height: 1.2;
-    color: #ffffff;
+    color: var(--text-white);
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
 }
@@ -404,12 +430,12 @@ a {
     border-radius: 0 0 20px 20px;
     padding: 0.6rem; 
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    mix-blend-mode: multiply; 
 }
 
 .expert-card:hover .card-img {
     transform: scale(1.05);
 }
+
 /* ==========================================================================
    7. PROJECTS LIST (Bagian Karya)
    ========================================================================== */
@@ -422,9 +448,9 @@ a {
 .project-item {
     padding: 1.5rem;
     background: var(--surface);
-    border: 1px solid var(--surface);
+    border: 1px solid var(--border);
     border-radius: 6px;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    transition: var(--theme-transition), transform 0.3s ease;
 }
 
 .project-item:hover {
@@ -434,7 +460,7 @@ a {
 
 .project-header h3 {
     font-size: 1.3rem;
-    color: #ffffff;
+    color: var(--text-white);
     margin-top: 0.25rem;
     margin-bottom: 0.75rem;
 }
@@ -465,28 +491,27 @@ a {
 
 .project-item:hover .project-tags span {
     border-color: var(--accent);
-    color: #ffffff;
+    color: var(--text-white);
 }
 
 /* ==========================================================================
    8. CONTACT & FOOTER 
    ========================================================================== */
-
 .content-body ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;        /* Membuat tombol berjejer ke samping */
-    flex-wrap: wrap;      /* Otomatis turun ke bawah dengan rapi jika layar HP sempit */
-    gap: 1rem;            /* Memberikan space/jarak 16px antar tombol (Email, Instagram, LinkedIn) */
-    margin-top: 1.5rem;   /* Memberikan space jarak dari teks deskripsi di atasnya */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .contact-social-group {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 2rem; /* Membuat space jarak dari teks di atasnya */
+    margin-top: 2rem;
 }
 
 .contact-icon-btn {
@@ -501,18 +526,15 @@ a {
     font-size: 0.85rem;
     color: var(--muted);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                color 0.3s ease, 
-                border-color 0.3s ease,
-                background-color 0.3s ease;
+                var(--theme-transition);
 }
 
 .contact-icon-btn i {
     font-size: 1.05rem;
 }
 
-/* Efek Hover Interaktif */
 .contact-icon-btn:hover {
-    color: #ffffff;
+    color: var(--text-white);
     border-color: var(--accent);
     background: rgba(225, 29, 72, 0.05); 
     transform: translateY(-4px); 
@@ -526,7 +548,7 @@ a {
 .mail-link {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-white);
     border-bottom: 2px solid var(--accent);
     padding-bottom: 4px;
     transition: all 0.3s ease;
@@ -545,4 +567,103 @@ a {
     font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
     color: var(--muted);
+    transition: var(--theme-transition);
+}
+
+/* ==========================================================================
+   KODE BARU: OPTIMASI RESPONSIF UNTUK ANDROID & iOS (MOBILE SIZES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 6rem 1.25rem 4rem 1.25rem;
+    }
+
+    .hero-section {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        min-height: auto;
+        margin-bottom: 4rem;
+        gap: 2rem;
+    }
+
+    .hero-text {
+        width: 100%;
+        z-index: 2;
+    }
+
+    .main-headline {
+        font-size: 1.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .sub-headline {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+
+    .cta-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    .btn-main, .btn-sub {
+        width: 100%;
+        text-align: center;
+        padding: 0.85rem 1.5rem;
+    }
+
+    .hero-photo-wrapper {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .hero-photo-wrapper img.profile-photo {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .grid-layout {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-bottom: 4rem;
+    }
+
+    .sticky-title {
+        position: static;
+    }
+
+    /* Di mobile, paksa tinggi kartu menjadi auto agar tulisan tetap terbaca penuh */
+    .grid-three-cards {
+        flex-direction: column !important;
+        flex-wrap: wrap !important;
+        gap: 1.25rem !important;
+    }
+
+    .grid-three-cards .expert-card {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+    
+    .card-title {
+        font-size: 1.15rem;
+    }
+
+    .content-body ul, .contact-social-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .contact-icon-btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
